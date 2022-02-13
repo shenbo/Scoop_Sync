@@ -8,30 +8,35 @@ on:
 
 jobs:
   build:
-    name: Github Auto-Sync to Gitee by GitHub Actions
+    name: Github repo Auto-Sync to Gitee, by GitHub Actions
     runs-on: ubuntu-latest
 
     steps:
-    - name: 1. Sync to Gitee 
-      run: |
-        
+    - name: 0. config 
+      run: |        
         mkdir -p ~/.ssh/
-        #echo "${{ secrets.ACTION_GITHUB_GITEE_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        #chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
 
+    - name: 1. scoop 
+      run: |
+        REPO='Scoop'
+
         cd /home/runner/work/
-        github_repo='https://github.com/ScoopInstaller/Scoop.git'
-        gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_Scoop.git'
-
-        git clone ${github_repo}
-        cd Scoop
-
+        git clone https://github.com/ScoopInstaller/${{REPO}}.git
+        cd ${{REPO}}
+        gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_${{REPO}}.git'
         git remote add gitee ${gitee_repo}
-        git show-ref
-
         git push --all --force gitee
-        git push --tags --force gitee
 
+    - name: 2. buckets 
+      run: |
+        REPO='Main'
 
-    # ==================
+        cd /home/runner/work/        
+        git clone https://github.com/ScoopInstaller/${{REPO}}.git
+        cd ${{REPO}}        
+        gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_${{REPO}}.git'
+        git remote add gitee ${gitee_repo}
+        git push --all --force gitee
+        
+        # ---------------------
