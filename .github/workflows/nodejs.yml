@@ -1,0 +1,31 @@
+name: Hexo Auto-Deploy
+on: 
+  push:
+    
+  schedule:
+    - cron: "0 0 8 * * *"
+
+
+jobs:
+  build:
+    name: Github Auto-Sync to Gitee by GitHub Actions
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 1. Sync to Gitee 
+      run: |
+        cd /home/runner/work/
+        github_pages_repo='git@github.com:ScoopInstaller/Scoop.git'
+        gitee_remote_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_Scoop.git'
+
+        git clone ${github_pages_repo}
+        cd Scoop
+
+        git remote add gitee ${gitee_remote_repo}
+        git show-ref
+
+        git push --all --force gitee
+        git push --tags --force gitee
+
+
+    # ==================
