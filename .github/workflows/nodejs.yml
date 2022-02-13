@@ -19,23 +19,19 @@ jobs:
 
     - name: 1. scoop 
       run: |
-        repo='Scoop'
-
         cd /home/runner/work/
-        git clone https://github.com/ScoopInstaller/${{repo}}.git
-        cd ${{repo}}
-        gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_${{repo}}.git'
+        git clone https://github.com/ScoopInstaller/Scoop.git
+        cd Scoop/
+        gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_Scoop.git'
         git remote add gitee ${gitee_repo}
         git push --all --force gitee
 
     - name: 2. buckets 
       run: |
-        repo='Main'
-
-        cd /home/runner/work/        
-        git clone https://github.com/ScoopInstaller/${{repo}}.git
-        cd ${{repo}}        
-        gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_${{repo}}.git'
+        cd /home/runner/work/
+        git clone https://github.com/ScoopInstaller/Main.git
+        cd Main/
+        gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_Main.git'
         git remote add gitee ${gitee_repo}
         git push --all --force gitee
         
