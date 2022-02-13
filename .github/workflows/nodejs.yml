@@ -21,13 +21,13 @@ jobs:
         ssh-keyscan github.com >> ~/.ssh/known_hosts
 
         cd /home/runner/work/
-        github_pages_repo='git@github.com:ScoopInstaller/Scoop.git'
-        gitee_remote_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_Scoop.git'
+        github_repo='https://github.com/ScoopInstaller/Scoop.git'
+        gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_Scoop.git'
 
-        git clone ${github_pages_repo}
+        git clone ${githubrepo}
         cd Scoop
 
-        git remote add gitee ${gitee_remote_repo}
+        git remote add gitee ${gitee_repo}
         git show-ref
 
         git push --all --force gitee
