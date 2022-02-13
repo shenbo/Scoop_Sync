@@ -1,10 +1,8 @@
-name: Hexo Auto-Deploy
+name: Repo Auto-Sync
 on: 
-  push:
-    
+  push:    
   schedule:
-    - cron: "0 8 * * *"
-
+    - cron: "0 6 * * *"
 
 jobs:
   build:
@@ -36,3 +34,19 @@ jobs:
         git push --all --force gitee
         
         # ---------------------
+
+        cd /home/runner/work/
+        git clone https://github.com/ScoopInstaller/Extras.git
+        cd Extras/
+        gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_Extras.git'
+        git remote add gitee ${gitee_repo}
+        git push --all --force gitee
+
+        # ---------------------
+
+        cd /home/runner/work/
+        git clone https://github.com/ScoopInstaller/Versions.git
+        cd Versions/
+        gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_Versions.git'
+        git remote add gitee ${gitee_repo}
+        git push --all --force gitee
