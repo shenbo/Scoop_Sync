@@ -24,7 +24,7 @@ jobs:
         github_repo='https://github.com/ScoopInstaller/Scoop.git'
         gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_Scoop.git'
 
-        git clone ${githubrepo}
+        git clone ${github_repo}
         cd Scoop
 
         git remote add gitee ${gitee_repo}
