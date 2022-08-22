@@ -6,6 +6,7 @@
 - https://gitee.com/shenbo1989/ScoopInstaller_Main'
 - https://gitee.com/shenbo1989/ScoopInstaller_Extras'
 - https://gitee.com/shenbo1989/ScoopInstaller_Versions'
+- https://gitee.com/shenbo1989/Portablesoft'
 
 
 > ref: https://github.com/ScoopInstaller/Scoop

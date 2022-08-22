@@ -50,3 +50,10 @@ jobs:
         gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/ScoopInstaller_Versions.git'
         git remote add gitee ${gitee_repo}
         git push --all --force gitee
+
+        cd /home/runner/work/
+        git clone https://github.com/shenbo/Portablesoft.git
+        cd Portablesoft/
+        gitee_repo='https://shenbo1989:${{secrets.GITEE_PASSWORD}}@gitee.com/shenbo1989/Portablesoft.git'
+        git remote add gitee ${gitee_repo}
+        git push --all --force gitee
